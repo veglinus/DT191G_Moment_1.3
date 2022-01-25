@@ -1,0 +1,41 @@
+@page "/JSON"
+@using System.Net.Http;
+@inject HttpClient Http;
+@using System.Net.Http.Json
+
+<PageTitle>JSON</PageTitle>
+
+<h1>JSON</h1>
+
+<br>
+<div>
+    <p>Cat fact from https://catfact.ninja/:<br>
+
+    @if (catfact is not null) {
+        @catfact.fact
+    }
+    </p>
+</div>
+
+@code {
+    private bool shouldRender;
+    public CatFact? catfact;
+
+    protected override bool ShouldRender() => shouldRender;
+
+    protected override async Task OnInitializedAsync() {
+        try {
+        catfact = await Http.GetFromJsonAsync<CatFact>("https://catfact.ninja/fact");
+        shouldRender = true;
+        } catch(HttpRequestException error) {
+            Console.WriteLine("\nError: ", error);
+        }
+    }
+
+    public class CatFact
+    {
+        public string fact { get; set; }
+        public int length;
+    }
+
+}

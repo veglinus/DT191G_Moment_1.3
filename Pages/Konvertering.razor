@@ -1,0 +1,43 @@
+﻿@page "/Konvertering"
+@using System.Net.Http;
+@inject HttpClient Http;
+
+<PageTitle>Konvertering</PageTitle>
+
+<h1>Konvertering</h1>
+
+<div>
+    <label for="number">Konvertera meter till fot:</label><br>
+    <input type="number" id="number" name="number" @bind="inputMeters" step="any">
+    <button class="btn btn-primary" @onclick="convertToFeet">Konvertera</button>
+    <br>
+    <span>Fot: @currentFeet</span>
+
+
+    <br><br>
+
+    <label for="speed">Konvertera km/h till miles/hour:</label><br>
+    <input type="speed" id="speed" name="speed" @bind="inputKmh" step="any">
+    <button class="btn btn-primary" @onclick="convertToMph">Konvertera</button>
+    <br>
+    <span>Miles/hour: @currentMph</span>
+
+</div>
+<br>
+
+@code {
+    private double currentFeet = 0;
+    private double inputMeters;
+    private double currentMph = 0;
+    private double inputKmh;
+
+    private void convertToFeet() {
+        double converted = inputMeters * 3.28084;
+        currentFeet = Math.Round(converted, 2);
+    }
+
+    private void convertToMph() {
+        double converted = inputKmh / 1.609344;
+        currentMph = Math.Round(converted, 0);
+    }
+}
