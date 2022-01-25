@@ -132,7 +132,9 @@ footer {
     width: 20%;
 }
 
-
+#mainmenu ul li a:hover {
+    background-color: #535a81;
+}
 
 
 @media only screen and (min-width: 768px) {
