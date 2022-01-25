@@ -10,11 +10,49 @@
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
-    <link href="DT191G_Moment_1.3.styles.css" rel="stylesheet" />
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
 <body>
-    @RenderBody()
+    <header>
+        <div id="hleft">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">
+                <img src="/assets/logo.png" alt="Picture of me">
+            </a>
+        </div>
+
+        <div id="hright">
+            <span>Dagens datum är: @DateTime.Now.ToShortDateString()</span>
+        </div>
+    </header>
+
+
+    <div class="bodycontainer">
+
+        <nav id="mainmenu">
+            <ul>
+                <li>
+                    <a class="nav-link text-dark" href="">Home</a>
+                </li>
+                <li>
+                    <a class="nav-link text-dark" href="/Konvertering">Konvertering</a>
+                </li>
+                <li>
+                    <a class="nav-link text-dark" href="/JSON">JSON</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <span>Av Linus Hvenfelt - Kontakta mig: <a href="mailto:linushvenfelt@gmail.com">linushvenfelt@@gmail.com</a></span>
+        </div>
+    </footer>
 
     <div id="blazor-error-ui">
         <environment include="Staging,Production">
