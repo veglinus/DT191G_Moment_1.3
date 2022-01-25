@@ -1,0 +1,36 @@
+<div>
+    <label for="input">Uglify some text:</label>
+    <input type="text" name="input" id="input" @bind="input">
+    <button class="btn btn-primary" @onclick="uglify">Convert</button>
+    <br>
+    <span>Uglified: @output</span>
+</div>
+
+@code {
+    private string input;
+    private string output;
+
+    private void uglify() {
+        char[] chararr = input.ToCharArray();
+
+        string newString = "";
+
+        for (int i = 0; i < chararr.Length; i++)
+        {  
+           if (chararr[i].ToString() != " ") {
+
+               if (i%2 > 0) {
+                   char newchar = char.ToUpper(chararr[i]);
+                   newString += newchar.ToString();
+               } else {
+                   newString += chararr[i].ToString();
+               }
+
+           } else {
+               newString += " ";
+           }
+        }
+
+        output = newString;
+    }
+}
